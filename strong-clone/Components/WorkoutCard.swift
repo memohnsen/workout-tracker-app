@@ -14,14 +14,13 @@ struct WorkoutCard: View {
         VStack(alignment: .leading) {
             Text(title).font(.headline)
             
-//            Spacer()
+            Spacer()
         }
         .frame(height: 100)
         .frame(width: 140)
         .padding()
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.black, lineWidth: 1))
-        .cornerRadius(12)
         .background(Color.white)
+        .cornerRadius(12)
     }
 }
 
