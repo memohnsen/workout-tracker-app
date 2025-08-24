@@ -17,7 +17,7 @@ struct SettingsView: View {
             }) {
                 HStack {
                     Image(systemName: image)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.black)
                         .imageScale(.large)
                     Text(title)
                         .foregroundStyle(textColor)
@@ -35,20 +35,24 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        // vstack for page
-        // vstack
-        // profile card
-        // subscription
-        // dark mode
-        // contact us
+        @State var isDarkMode: Bool = false
+        
         ZStack {
             Color.gray.opacity(0.2).ignoresSafeArea()
             VStack(spacing: 0) {
                 List {
                     SettingsCard(image: "person.crop.circle", title: "Profile", textColor: .black)
                     SettingsCard(image: "creditcard.fill", title: "Subscription", textColor: .black)
+                    SettingsCard(image: "envelope.fill", title: "Contact Us", textColor: .black)
+                    HStack{
+                        Image(systemName: "moonphase.waxing.crescent")
+                            .resizable()
+                            .frame(width: 25)
+                            .frame(height: 25)
+                            .padding(.leading, 12)
+                        Toggle(" Dark Mode", isOn: $isDarkMode)
+                    }
                 }
-    
             }
         }
     }
