@@ -19,7 +19,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("History", systemImage: "clock.fill")
                 }
-            Text("Exercises")
+            ExerciseView()
                 .tabItem{
                     Label("Exercises", systemImage: "dumbbell.fill")
                 }
@@ -27,7 +27,7 @@ struct ContentView: View {
                 .tabItem{
                     Label("Metrics", systemImage: "chart.bar")
                 }
-            Text("Settings")
+            SettingsView()
                 .tabItem{
                     Label("Settings", systemImage: "gearshape.fill")
                 }

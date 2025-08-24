@@ -11,70 +11,78 @@ struct HomeView: View {
     @State private var showAlert = false
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center, spacing: 30) {
-                HStack {
-                    Button("Start An Empty Workout") {
-                        showAlert = true
-                    }.frame(maxWidth: .infinity)
+        ZStack {
+            Color.gray.opacity(0.2).ignoresSafeArea()
+
+            ScrollView {
+                VStack(alignment: .center, spacing: 30) {
+                    HStack {
+                        Button("Start An Empty Workout") {
+                            showAlert = true
+                        }.frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    
+                    HStack {
+                        Text("Templates").font(.title2)
+                        Spacer()
+                        
+                        Button("+ Template") {
+                            
+                        }.buttonStyle(.borderedProminent)
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "folder")
+                        }.buttonStyle(.borderedProminent)
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "ellipsis")
+                        }.buttonStyle(.borderedProminent)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "folder")
+                        Text("My Templates")
+                        Spacer()
+                        
+                        Button(action: {}) {
+                            Image(systemName: "ellipsis")
+                        }
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                }.padding(.horizontal, 20)
-                
-                
-                HStack {
-                    Text("Templates").font(.title2)
-                    Spacer()
+                    }
                     
-                    Button("+ Template") {
-                        
-                    }.buttonStyle(.borderedProminent)
+                    LazyVGrid(columns: [
+                        GridItem(.flexible()),
+                        GridItem(.flexible())
+                    ], spacing: 15) {
+                        WorkoutCard(title: "Workout 1")
+                        WorkoutCard(title: "Workout 2")
+                        WorkoutCard(title: "Workout 3")
+                        WorkoutCard(title: "Workout 4")
+                    }
                     
-                    Button(action: {}) {
-                        Image(systemName: "folder")
-                    }.buttonStyle(.borderedProminent)
-                    
-                    Button(action: {}) {
-                        Image(systemName: "ellipsis")
-                    }.buttonStyle(.borderedProminent)
                 }
-                
-                HStack {
-                    Image(systemName: "folder")
-                    Text("My Templates (2)")
-                    Spacer()
-                    
-                    Button(action: {}) {
-                        Image(systemName: "ellipsis")
-                    }.buttonStyle(.borderedProminent)
-                }
-                
-                LazyVGrid(columns: [
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ], spacing: 15) {
-                    WorkoutCard(title: "Workout 1")
-                    WorkoutCard(title: "Workout 2")
-                    WorkoutCard(title: "Workout 3")
-                    WorkoutCard(title: "Workout 4")
-                }
-                
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .padding(.horizontal, 20)
+            
+            .alert("Button Clicked", isPresented: $showAlert) {
+                Button("Ok") {}
+            } message: {Text("Clicked")}
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        
-        .alert("Button Clicked", isPresented: $showAlert) {
-            Button("Ok") {}
-        } message: {Text("Clicked")}
-        
-        
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.gray.opacity(0.1))
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }

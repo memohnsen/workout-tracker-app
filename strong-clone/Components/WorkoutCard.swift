@@ -17,7 +17,7 @@ struct WorkoutCard: View {
             Spacer()
         }
         .frame(height: 100)
-        .frame(width: 150)
+        .frame(width: 140)
         .padding()
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.black, lineWidth: 1))
     }
