@@ -39,7 +39,7 @@ struct SettingsView: View {
         
         ZStack {
             Color.gray.opacity(0.2).ignoresSafeArea()
-            VStack(spacing: 0) {
+            NavigationStack {
                 List {
                     SettingsCard(image: "person.crop.circle", title: "Profile", textColor: .black)
                     SettingsCard(image: "creditcard.fill", title: "Subscription", textColor: .black)
@@ -52,7 +52,7 @@ struct SettingsView: View {
                             .padding(.leading, 12)
                         Toggle(" Dark Mode", isOn: $isDarkMode)
                     }
-                }
+                }.navigationTitle("Settings")
             }
         }
     }

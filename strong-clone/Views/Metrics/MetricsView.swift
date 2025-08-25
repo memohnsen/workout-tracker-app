@@ -21,7 +21,31 @@ let sampleData = [
     Metric(date: "2025-08-24", lift: "Squat", e1rm: 350)
 ]
 
+let benchPress = [
+    Metric(date: "2025-8-04", lift: "Bench Press", e1rm: 200),
+    Metric(date: "2025-08-14", lift: "Bench Press", e1rm: 215),
+]
+
 struct MetricsView: View {
+    fileprivate func rmGraph(data: [Metric]) -> some View {
+        return VStack(alignment: .center) {
+            Text(data.first?.lift ?? "").font(.title)
+                .padding(.top, 8)
+            Chart(data) { metric in
+                LineMark(
+                    x: .value("Date", metric.date),
+                    y: .value("1 Rep Max", metric.e1rm)
+                )
+            }
+            .frame(height: 200)
+            .padding()
+        }
+        .background(Color.white)
+        .frame(width: 350)
+        .cornerRadius(12)
+        .padding(.bottom, 8)
+    }
+    
     var body: some View {
         ZStack {
             Color.gray.opacity(0.2).ignoresSafeArea()
@@ -33,21 +57,9 @@ struct MetricsView: View {
                         .bold()
                         .padding(.bottom, 8)
                                         
-                    VStack(alignment: .center) {
-                        Text("Squat").font(.title)
-                            .padding(.top, 8)
-                        Chart(sampleData) { metric in
-                            LineMark(
-                                x: .value("Date", metric.date),
-                                y: .value("1 Rep Max", metric.e1rm)
-                            )
-                        }
-                        .frame(height: 200)
-                        .padding()
-                    }
-                    .background(Color.white)
-                    .frame(width: 350)
-                    .cornerRadius(12)
+                    rmGraph(data: sampleData)
+                    rmGraph(data: benchPress)
+                
                 }
             }
         }

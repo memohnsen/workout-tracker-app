@@ -36,7 +36,13 @@ struct ExerciseView: View {
                         }
                     } else {
                         ForEach(filteredExercises, id: \.self) { exercise in
-                            Text(exercise)
+                            HStack{
+                                Text(exercise)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundStyle(.gray)
+                                    .imageScale(.small)
+                            }
                         }
                     }
                 }
