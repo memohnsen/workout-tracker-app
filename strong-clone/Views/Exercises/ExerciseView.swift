@@ -1,21 +1,16 @@
-//
-//  ExerciseView.swift
-//  strong-clone
-//
-//  Created by Maddisen Mohnsen on 8/24/25.
-//
-
 import SwiftUI
 import ConvexMobile
-internal import Combine
+import Combine
 
-struct Exercises: Decodable {
+struct Exercises: Decodable, Identifiable {
     let _id: String
     let exercise: String
     let equipment: String
     let muscle_group: String
     let notes: String
     let video_link: String
+    
+    var id: String { _id }
 }
 
 struct ExerciseView: View {
@@ -25,37 +20,17 @@ struct ExerciseView: View {
     @State private var exerciseList: [String] = ["Push-Up", "Squat", "Plank", "Mountain Climbers"]
     
     @State private var exercisesConvex: [Exercises] = []
+    @State private var cancellables = Set<AnyCancellable>()
     
-    func addExercise(exercise: String) {
-        exerciseList.append(exercise)
-    }
-    
-    var filteredExercises: [String] {
+    var filteredExercises: [Exercises] {
         if searchText.isEmpty {
-            return exerciseList
-        }
-        else {
-            return exerciseList.filter {$0.localizedCaseInsensitiveContains(searchText)}
+            return exercisesConvex
+        } else {
+            return exercisesConvex.filter {
+                $0.exercise.localizedCaseInsensitiveContains(searchText)
+            }
         }
     }
-    
-    //    struct ContentView: View {
-    //      @State private var todos: [Todo] = []
-    //
-    //      var body: some View {
-    //        List {
-    //          ForEach(todos, id: \._id) { todo in
-    //            Text(todo.text)
-    //          }
-    //        }.task {
-    //          for await todos: [Todo] in convex.subscribe(to: "tasks:get")
-    //            .replaceError(with: []).values
-    //          {
-    //            self.todos = todos
-    //          }
-    //        }.padding()
-    //      }
-    //    }
     
     var body: some View {
         ZStack {
@@ -63,20 +38,14 @@ struct ExerciseView: View {
             
             VStack {
                 NavigationStack {
-                    List{
-                        ForEach(exercisesConvex, id: \._id) { exercise in
-                            HStack{
+                    List {
+                        ForEach(filteredExercises) { exercise in
+                            HStack {
                                 Text(exercise.exercise)
                                 Spacer()
                                 Image(systemName: "chevron.right")
                                     .foregroundStyle(.gray)
                                     .imageScale(.small)
-                            }
-                        }.task {
-                            for await exercises: [Exercises] in convex.subscribe(to: "exercises:get")
-                                .replaceError(with: []).values
-                            {
-                                self.exercisesConvex = exercises
                             }
                         }
                     }
@@ -91,7 +60,11 @@ struct ExerciseView: View {
                             }
                         }
                     }
-                }.sheet(isPresented: $exerciseAddClicked) {
+                    .onAppear {
+                        subscribeToExercises()
+                    }
+                }
+                .sheet(isPresented: $exerciseAddClicked) {
                     VStack(spacing: 20) {
                         Text("Add Exercise").font(.title).bold()
                         
@@ -103,31 +76,44 @@ struct ExerciseView: View {
                             Button("Cancel") {
                                 exerciseAddClicked = false
                                 newExerciseName = ""
-                            }.padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(8)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(8)
                             
                             Button("Add") {
                                 let trimmedName = newExerciseName.trimmingCharacters(in: .whitespacesAndNewlines)
                                 if !trimmedName.isEmpty {
-                                    addExercise(exercise: trimmedName)
+                                    // TODO: Call Convex mutation here instead of just local append
+                                    // e.g. convex.mutation("exercises:add", args: ["exercise": trimmedName])
                                 }
                                 exerciseAddClicked = false
                                 newExerciseName = ""
-                            }.padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
                         }
                     }
                 }
             }
         }
     }
+    
+    private func subscribeToExercises() {
+        convex
+            .subscribe(to: "exercises:get", yielding: [Exercises].self)
+            .replaceError(with: [])
+            .sink { exercises in
+                self.exercisesConvex = exercises
+            }
+            .store(in: &cancellables)
+    }
 }
 
-#Preview {
+#Preview{
     ExerciseView()
 }
