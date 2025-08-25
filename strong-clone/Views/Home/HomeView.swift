@@ -18,7 +18,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            Color.gray.opacity(0.2).ignoresSafeArea()
+            Color(.secondarySystemBackground).ignoresSafeArea()
 
             ScrollView {
                 VStack(alignment: .center, spacing: 30) {
@@ -112,7 +112,14 @@ struct HomeView: View {
 }
     
 struct WorkoutCard: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     @State private var templateClicked: Bool = false
+    @State private var darkMode: Bool = false
+    
+    var isDarkMode: Bool {
+        darkMode ? colorScheme == .dark : colorScheme == .light
+    }
     
     let title: String
     
@@ -129,7 +136,7 @@ struct WorkoutCard: View {
             .frame(height: 100)
             .frame(width: 140)
             .padding()
-            .background(Color.white)
+            .background(isDarkMode ? Color(.systemBackground) : Color(.systemBackground))
             .cornerRadius(12)
             .onTapGesture {
                 templateClicked = true

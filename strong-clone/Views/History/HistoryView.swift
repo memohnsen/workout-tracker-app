@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HistoryView: View {
-    
     var daysCompleted: [String] = ["2025-08-24", "2025-08-23", "2025-08-22"]
     
     var body: some View {

@@ -8,51 +8,47 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.colorScheme) var colorScheme
     
-    fileprivate func SettingsCard(image: String, title: String, textColor: Color) -> some View {
-        return VStack(spacing: 16) {
+    var body: some View {
+        ZStack {
+            NavigationStack {
+                List {
+                    SettingsCard(image: "person.crop.circle", title: "Profile", darkMode: .constant(colorScheme == .dark))
+                    SettingsCard(image: "creditcard.fill", title: "Subscription", darkMode: .constant(colorScheme == .dark))
+                    SettingsCard(image: "envelope.fill", title: "Contact Us", darkMode: .constant(colorScheme == .dark))
+                }.navigationTitle("Settings")
+            }
+        }
+    }
+}
+
+struct SettingsCard: View{
+    var image: String
+    var title: String
+    @Binding var darkMode: Bool
+
+    var body: some View {
+        VStack(spacing: 16) {
             
             Button(action: {
                 
             }) {
                 HStack {
                     Image(systemName: image)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(darkMode ? Color.white : Color(.black))
                         .imageScale(.large)
                     Text(title)
-                        .foregroundStyle(textColor)
+                        .foregroundStyle(darkMode ? Color.white : Color(.black))
                     Spacer()
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.gray)
                         .imageScale(.small)
                 }
                 .padding()
-                .background(Color.white)
+                .background(darkMode ? Color(.secondarySystemBackground) : Color(.systemBackground))
                 .cornerRadius(12)
                 .frame(width: 350, height: 30)
-            }
-        }
-    }
-    
-    var body: some View {
-        @State var isDarkMode: Bool = false
-        
-        ZStack {
-            Color.gray.opacity(0.2).ignoresSafeArea()
-            NavigationStack {
-                List {
-                    SettingsCard(image: "person.crop.circle", title: "Profile", textColor: .black)
-                    SettingsCard(image: "creditcard.fill", title: "Subscription", textColor: .black)
-                    SettingsCard(image: "envelope.fill", title: "Contact Us", textColor: .black)
-                    HStack{
-                        Image(systemName: "moonphase.waxing.crescent")
-                            .resizable()
-                            .frame(width: 25)
-                            .frame(height: 25)
-                            .padding(.leading, 12)
-                        Toggle(" Dark Mode", isOn: $isDarkMode)
-                    }
-                }.navigationTitle("Settings")
             }
         }
     }

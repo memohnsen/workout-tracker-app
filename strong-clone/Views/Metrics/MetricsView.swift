@@ -48,7 +48,7 @@ struct MetricsView: View {
     
     var body: some View {
         ZStack {
-            Color.gray.opacity(0.2).ignoresSafeArea()
+            Color(.secondarySystemBackground).ignoresSafeArea()
             
             ScrollView{
                 VStack(alignment: .leading) {

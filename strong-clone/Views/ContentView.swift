@@ -7,6 +7,9 @@
 
 import SwiftUI
 import SwiftData
+import ConvexMobile
+
+let convex = ConvexClient(deploymentUrl: "https://youthful-labrador-295.convex.cloud")
 
 struct ContentView: View {
     var body: some View {

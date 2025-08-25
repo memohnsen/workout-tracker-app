@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		719E8DF12E5D0F01003B8235 /* ConvexMobile in Frameworks */ = {isa = PBXBuildFile; productRef = 719E8DF02E5D0F01003B8235 /* ConvexMobile */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		713B2C1F2E5B5B1E00F900E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				719E8DF12E5D0F01003B8235 /* ConvexMobile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = "strong-clone";
 			packageProductDependencies = (
+				719E8DF02E5D0F01003B8235 /* ConvexMobile */,
 			);
 			productName = "strong-clone";
 			productReference = 713B2C0D2E5B5B1D00F900E5 /* strong-clone.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = 713B2C042E5B5B1D00F900E5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				719E8DEF2E5D0F01003B8235 /* XCRemoteSwiftPackageReference "convex-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 713B2C0E2E5B5B1D00F900E5 /* Products */;
 			projectDirPath = "";
@@ -601,6 +610,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		719E8DEF2E5D0F01003B8235 /* XCRemoteSwiftPackageReference "convex-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/get-convex/convex-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		719E8DF02E5D0F01003B8235 /* ConvexMobile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 719E8DEF2E5D0F01003B8235 /* XCRemoteSwiftPackageReference "convex-swift" */;
+			productName = ConvexMobile;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 713B2C052E5B5B1D00F900E5 /* Project object */;
 }
