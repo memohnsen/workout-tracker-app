@@ -11,14 +11,22 @@ struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        ZStack {
-            NavigationStack {
-                List {
+        NavigationStack {
+            List {
+                NavigationLink(destination: ProfileView()){
                     SettingsCard(image: "person.crop.circle", title: "Profile", darkMode: .constant(colorScheme == .dark))
+                }
+                
+                NavigationLink(destination: SubscriptionView()){
                     SettingsCard(image: "creditcard.fill", title: "Subscription", darkMode: .constant(colorScheme == .dark))
+                }
+
+                NavigationLink(destination: ContactView()){
                     SettingsCard(image: "envelope.fill", title: "Contact Us", darkMode: .constant(colorScheme == .dark))
-                }.navigationTitle("Settings")
+                }
             }
+//            .navigationTitle("Settings")
+//            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -41,16 +49,43 @@ struct SettingsCard: View{
                     Text(title)
                         .foregroundStyle(darkMode ? Color.white : Color(.black))
                     Spacer()
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(.gray)
-                        .imageScale(.small)
                 }
                 .padding()
                 .background(darkMode ? Color(.secondarySystemBackground) : Color(.systemBackground))
                 .cornerRadius(12)
-                .frame(width: 350, height: 30)
+                .frame(width: 330, height: 30)
             }
         }
+    }
+}
+
+struct ProfileView: View {
+    var body: some View {
+        VStack{
+
+        }
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct SubscriptionView: View {
+    var body: some View {
+        VStack{
+            
+        }
+        .navigationTitle("Subscription")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct ContactView: View {
+    var body: some View {
+        VStack{
+            
+        }
+        .navigationTitle("Contact Us")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
