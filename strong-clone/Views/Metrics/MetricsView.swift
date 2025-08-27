@@ -27,6 +27,8 @@ let benchPress = [
 ]
 
 struct MetricsView: View {
+//    @Environment(\.colorScheme) var colorScheme
+    
     fileprivate func rmGraph(data: [Metric]) -> some View {
         return VStack(alignment: .center) {
             Text(data.first?.lift ?? "").font(.title)
@@ -40,7 +42,7 @@ struct MetricsView: View {
             .frame(height: 200)
             .padding()
         }
-        .background(Color.white)
+        .background(Color(.secondarySystemBackground))
         .frame(width: 350)
         .cornerRadius(12)
         .padding(.bottom, 8)
@@ -48,7 +50,7 @@ struct MetricsView: View {
     
     var body: some View {
         ZStack {
-            Color(.secondarySystemBackground).ignoresSafeArea()
+            Color(.systemBackground).ignoresSafeArea()
             
             ScrollView{
                 VStack(alignment: .leading) {

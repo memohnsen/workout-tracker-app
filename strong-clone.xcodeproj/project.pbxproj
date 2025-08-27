@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		719E8DF12E5D0F01003B8235 /* ConvexMobile in Frameworks */ = {isa = PBXBuildFile; productRef = 719E8DF02E5D0F01003B8235 /* ConvexMobile */; };
+		719F36AB2E5FCBB3006D4407 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = 719F36AA2E5FCBB3006D4407 /* PostHog */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				719E8DF12E5D0F01003B8235 /* ConvexMobile in Frameworks */,
+				719F36AB2E5FCBB3006D4407 /* PostHog in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +133,7 @@
 			name = "strong-clone";
 			packageProductDependencies = (
 				719E8DF02E5D0F01003B8235 /* ConvexMobile */,
+				719F36AA2E5FCBB3006D4407 /* PostHog */,
 			);
 			productName = "strong-clone";
 			productReference = 713B2C0D2E5B5B1D00F900E5 /* strong-clone.app */;
@@ -216,6 +219,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				719E8DEF2E5D0F01003B8235 /* XCRemoteSwiftPackageReference "convex-swift" */,
+				719F36A92E5FCBB3006D4407 /* XCRemoteSwiftPackageReference "posthog-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 713B2C0E2E5B5B1D00F900E5 /* Products */;
@@ -293,6 +297,8 @@
 /* Begin XCBuildConfiguration section */
 		713B2C322E5B5B1E00F900E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,7 +316,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,6 +336,8 @@
 		};
 		713B2C332E5B5B1E00F900E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -347,7 +355,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -367,6 +375,8 @@
 		};
 		713B2C342E5B5B1E00F900E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -431,6 +441,8 @@
 		};
 		713B2C352E5B5B1E00F900E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -488,6 +500,8 @@
 		};
 		713B2C372E5B5B1E00F900E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -510,6 +524,8 @@
 		};
 		713B2C382E5B5B1E00F900E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +548,8 @@
 		};
 		713B2C3A2E5B5B1E00F900E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -552,6 +570,8 @@
 		};
 		713B2C3B2E5B5B1E00F900E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 713B2C0F2E5B5B1D00F900E5 /* strong-clone */;
+			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -620,6 +640,14 @@
 				minimumVersion = 0.5.5;
 			};
 		};
+		719F36A92E5FCBB3006D4407 /* XCRemoteSwiftPackageReference "posthog-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PostHog/posthog-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.30.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -627,6 +655,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 719E8DEF2E5D0F01003B8235 /* XCRemoteSwiftPackageReference "convex-swift" */;
 			productName = ConvexMobile;
+		};
+		719F36AA2E5FCBB3006D4407 /* PostHog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 719F36A92E5FCBB3006D4407 /* XCRemoteSwiftPackageReference "posthog-ios" */;
+			productName = PostHog;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

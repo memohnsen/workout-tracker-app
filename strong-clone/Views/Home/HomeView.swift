@@ -3,6 +3,25 @@ import SwiftUI
 struct HomeView: View {
     @State private var selectedDate = Date()
     
+    private var displayDateText: Text {
+        let today = Calendar.current.startOfDay(for: Date())
+        let selected = Calendar.current.startOfDay(for: selectedDate)
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        
+        if selected == today {
+            return Text("TODAY")
+        } else if selected == tomorrow {
+            return Text("TOMORROW")
+        } else if selected == yesterday {
+            return Text("YESTERDAY")
+        } else {
+            return Text(formatter.string(from: selectedDate).uppercased())
+        }
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -11,10 +30,10 @@ struct HomeView: View {
                         .padding(.horizontal, 16)
                         .padding(.bottom, 20)
                     
-                    WorkoutSessionView()
+                    WorkoutSessionView(selectedDate: $selectedDate)
                 }
             }
-            .navigationTitle("TODAY")
+            .navigationTitle(displayDateText)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -23,8 +42,10 @@ struct HomeView: View {
                             .foregroundColor(.primary)}
                     }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {}) {
-                        Image(systemName: "line.horizontal.3")
+                    Button(action: {
+                        selectedDate = Date()
+                    }) {
+                        Image(systemName: "house.fill")
                             .foregroundColor(.primary)
                     }
                 }
@@ -92,11 +113,13 @@ struct WeekCalendarView: View {
                             if value.translation.width < 0 {
                                 // Swipe left - move forward one week
                                 if let newDate = calendar.date(byAdding: .weekOfYear, value: 1, to: selectedDate) {
+                                    print(value.translation.width)
                                     selectedDate = newDate
                                 }
                             } else if value.translation.width > 0 {
                                 // Swipe right - move back one week
                                 if let newDate = calendar.date(byAdding: .weekOfYear, value: -1, to: selectedDate) {
+                                    print(value.translation.width)
                                     selectedDate = newDate
                                 }
                             }
@@ -123,19 +146,22 @@ struct WeekCalendarView: View {
 }
 
 struct WorkoutSessionView: View {
+    @Binding var selectedDate: Date
+
     var body: some View {
         VStack(spacing: 0) {
-            Button(action: {}) {
-                Text("Start Session")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 20)
+            NavigationLink(destination: WorkoutView()) {
+                    Text("Start Session")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 20)
+
             
             LazyVStack(spacing: 20) {
                 WorkoutSection(
@@ -173,6 +199,27 @@ struct WorkoutSessionView: View {
             
             Spacer(minLength: 100)
         }
+        .gesture(
+            DragGesture()
+                .onEnded { value in
+                    if abs(value.translation.width) > 50 {
+                        if value.translation.width < 0 {
+                            // Swipe left - move forward one day __BROKEN__
+                            if let newDate = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
+                                selectedDate = newDate
+                                print(value.translation.width)
+
+                            }
+                        } else if value.translation.width > 0 {
+                            // Swipe right - move back one day __WORKING__
+                            if let newDate = Calendar.current.date(byAdding: .day, value: -1, to: selectedDate) {
+                                selectedDate = newDate
+                                print(value.translation.width)
+                            }
+                        }
+                    }
+                }
+        )
     }
 }
 

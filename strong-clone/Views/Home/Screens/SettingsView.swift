@@ -11,23 +11,21 @@ struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        NavigationStack {
-            List {
-                NavigationLink(destination: ProfileView()){
-                    SettingsCard(image: "person.crop.circle", title: "Profile", darkMode: .constant(colorScheme == .dark))
-                }
-                
-                NavigationLink(destination: SubscriptionView()){
-                    SettingsCard(image: "creditcard.fill", title: "Subscription", darkMode: .constant(colorScheme == .dark))
-                }
-
-                NavigationLink(destination: ContactView()){
-                    SettingsCard(image: "envelope.fill", title: "Contact Us", darkMode: .constant(colorScheme == .dark))
-                }
+        List {
+            NavigationLink(destination: ProfileView()){
+                SettingsCard(image: "person.crop.circle", title: "Profile", darkMode: .constant(colorScheme == .dark))
             }
-//            .navigationTitle("Settings")
-//            .navigationBarTitleDisplayMode(.inline)
+            
+            NavigationLink(destination: SubscriptionView()){
+                SettingsCard(image: "creditcard.fill", title: "Subscription", darkMode: .constant(colorScheme == .dark))
+            }
+
+            NavigationLink(destination: ContactView()){
+                SettingsCard(image: "envelope.fill", title: "Contact Us", darkMode: .constant(colorScheme == .dark))
+            }
         }
+        .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -37,8 +35,7 @@ struct SettingsCard: View{
     @Binding var darkMode: Bool
 
     var body: some View {
-        VStack(spacing: 16) {
-            
+        VStack(spacing: 0) {
             Button(action: {
                 
             }) {

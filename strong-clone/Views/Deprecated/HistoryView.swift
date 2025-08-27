@@ -12,7 +12,7 @@ struct HistoryView: View {
     
     var body: some View {
         ZStack {
-            Color.gray.opacity(0.2)
+            Color(.secondarySystemBackground)
                 .ignoresSafeArea()
             
             List{
