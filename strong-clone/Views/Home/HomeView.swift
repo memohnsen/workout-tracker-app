@@ -1,4 +1,5 @@
 import SwiftUI
+import PostHog
 
 struct HomeView: View {
     @State private var selectedDate = Date()
@@ -44,6 +45,7 @@ struct HomeView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         selectedDate = Date()
+                        PostHogSDK.shared.capture("Test Event")
                     }) {
                         Image(systemName: "house.fill")
                             .foregroundColor(.primary)
@@ -110,6 +112,7 @@ struct WeekCalendarView: View {
                 DragGesture()
                     .onEnded { value in
                         if abs(value.translation.width) > 50 {
+                            PostHogSDK.shared.capture("Test Event")
                             if value.translation.width < 0 {
                                 // Swipe left - move forward one week
                                 if let newDate = calendar.date(byAdding: .weekOfYear, value: 1, to: selectedDate) {
